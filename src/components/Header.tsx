@@ -6,8 +6,14 @@ import { SetupBanner } from "@/components/SetupBanner";
 import { Wallet, Cloud, LogOut } from "lucide-react";
 
 export async function Header() {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  let user: { id: string; app_metadata?: { provider?: string } } | null = null;
+  try {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getUser();
+    user = data.user;
+  } catch {
+    // Supabase init/auth failed (e.g. missing env vars on Vercel)
+  }
   const isAuthenticated = !!user && user.app_metadata?.provider !== "anonymous";
 
   return (
