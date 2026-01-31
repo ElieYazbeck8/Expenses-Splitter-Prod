@@ -1,0 +1,30 @@
+# Expense Splitter – Coding Rules
+
+## Stack
+
+- Next.js App Router
+- TypeScript (strict)
+- Tailwind CSS
+- Shadcn UI components
+- Supabase (DB + Auth)
+
+## Structure
+
+- `src/app/` – routes and layout
+- `src/components/` – UI components (domain-specific + ui/)
+- `src/lib/` – domain logic, Supabase clients, utilities
+
+## Conventions
+
+- Use server actions for mutations; keep components thin
+- Validate inputs with Zod
+- Prefer named exports
+- No inline styles; use Tailwind
+- Keep components focused; extract reusable logic to lib
+
+## Domain Logic
+
+- Put calculations in `lib/calculations.ts`
+- Put formatters in `lib/formatters.ts`
+- Put validators in `lib/validators.ts`
+- Put types in `lib/types.ts`

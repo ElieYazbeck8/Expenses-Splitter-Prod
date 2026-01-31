@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Expense Splitter
 
-## Getting Started
+Ultra-simple expense splitter for trips and recurring groups.
 
-First, run the development server:
+## Setup
+
+### 1. Supabase
+
+1. Create a project at [supabase.com](https://supabase.com)
+2. Run migrations via Dashboard > SQL Editor (in order):
+   - `supabase/migrations/001_initial_schema.sql`
+   - `supabase/migrations/002_settled_payments.sql` (for partial settlement)
+3. Enable **Anonymous** sign-in: Authentication > Providers > Anonymous
+4. (Optional) Enable **Email** for email/password sign in: Authentication > Providers > Email
+   - Add redirect URL: `http://localhost:3000/auth/callback`
+   - To skip email verification: disable "Confirm email" in Email provider settings
+5. (Optional) Enable **Google**, **GitHub**, or **Apple**: Authentication > Providers
+6. Add redirect URL: `http://localhost:3000/auth/callback` (Authentication > URL Configuration)
+7. Copy **Project URL** and **anon key** from Settings > API
+
+### 2. Environment
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.local.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Edit `.env.local` with your Supabase URL and anon key.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Run
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open http://localhost:3000
